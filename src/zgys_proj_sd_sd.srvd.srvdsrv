@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for Sales order model'
+define service ZGYS_PROJ_SD_SD {
+  expose ZC_GYS_PROJ_SALES_ANALYTICS;
+}

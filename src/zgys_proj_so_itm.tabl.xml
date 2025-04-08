@@ -100,7 +100,7 @@
      <DATATYPE>UNIT</DATATYPE>
      <LENG>000003</LENG>
      <MASK>  UNIT</MASK>
-     <DDTEXT>Unit of Measurement</DDTEXT>
+     <DDTEXT>Unit of Measure</DDTEXT>
     </DD03P>
     <DD03P>
      <FIELDNAME>.INCLUDE</FIELDNAME>
