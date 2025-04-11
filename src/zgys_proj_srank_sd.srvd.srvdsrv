@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for Sales Rank'
+define service ZGYS_PROJ_SRANK_SD {
+  expose ZC_GYS_PROJ_SALES_RANK as SalesRankSet;
+}

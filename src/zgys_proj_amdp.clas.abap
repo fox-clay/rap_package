@@ -20,7 +20,7 @@ CLASS zgys_proj_amdp DEFINITION
                             VALUE(i_tax) type i
                         EXPORTING
                             VALUE(otab) type zgys_proj_tt_product_mrp.
-
+    CLASS-METHODS get_total_sales for table function zgys_proj_tf .
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
@@ -114,6 +114,25 @@ CLASS zgys_proj_amdp IMPLEMENTATION.
                           :lv_price_d,
                           :lv_mrp ), i );
          END FOR;
+  ENDMETHOD.
+
+  METHOD get_total_sales by DATABASE FUNCTION FOR HDB LANGUAGE SQLSCRIPT
+                            OPTIONS READ-ONLY
+                            USING zgys_proj_bp zgys_proj_so_hdr zgys_proj_so_itm.
+        RETURN SELECT
+                bpa.client,
+                bpa.company_name,
+                sum( item.amount ) as total_sales,
+                item.currency as currency_code,
+                RANK ( ) OVER ( ORDER BY SUM ( item.amount ) desc ) as customer_rank
+        from zgys_proj_bp as bpa
+        INNER JOIN    zgys_proj_so_hdr as sls
+        ON bpa.bp_id = sls.buyer
+        INNER JOIN zgys_proj_so_itm as item
+        on sls.order_id = item.order_id
+        GROUP BY bpa.client,
+                 bpa.company_name,
+                 item.currency;
   ENDMETHOD.
 
 ENDCLASS.
