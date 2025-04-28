@@ -2,6 +2,7 @@
 @EndUserText.label: 'Booking as Child Entity'
 @Metadata.ignorePropagatedAnnotations: true
 define view entity ZGYS_PROJ_BOOKING as select from /dmo/booking_m
+composition[0..*] of ZGYS_PROJ_BOOKSUPPL as _BookingSuppl
 association to parent ZGYS_PROJ_TRAVEL as _Travel on
     $projection.TravelId = _Travel.TravelId
 association[1] to /DMO/I_Customer as _Customer on
@@ -32,6 +33,6 @@ association[1..1] to /DMO/I_Booking_Status_VH as _BookingStatus on
     _Carrier,
     _Connection,
     _BookingStatus,
-    _Travel
-    
+    _Travel,
+    _BookingSuppl
 }
