@@ -2,7 +2,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Sales Composite Cube View for Sales Data'
 @Metadata.ignorePropagatedAnnotations: true
-@ObjectModel.usageType:{
+@ObjectModel.usageType:{ 
     serviceQuality: #X,
     sizeCategory: #S,
     dataClass: #MIXED
